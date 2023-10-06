@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "mlops"
+version = "0.1.0"
+description = "HW for MLOps course"
+authors = ["Alexandr Pavlov <pavlov.aleksandr.v@phystech.edu>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+torch = "^2.1.0"
+torchvision = "^0.16.0"
+
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.4.2"
+pre-commit = "^3.4.0"
+
+[tool.black]
+line-length = 90
+target-version = ["py39"]
+
+[tool.isort]
+src_paths = ["somepytools"]
+profile = "black"
+line_length = 90
+lines_after_imports = 2
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
