@@ -21,7 +21,7 @@ if __name__ == "__main__":
     cnn.load_state_dict(torch.load("saved_models/cnn.pt"))
 
     start_time = time.time()
-    cnn_loss, cnn_accuracy = evaluate(cnn, eval_loader)
+    cnn_loss, cnn_accuracy = evaluate(cnn, eval_loader, device)
     print(f"CNN eval accuracy = {cnn_accuracy:.4f}")
 
     if not os.path.exists("reports"):
@@ -31,3 +31,4 @@ if __name__ == "__main__":
         report.write(f"CNN eval loss = {cnn_loss}")
         report.write("\n")
         report.write(f"CNN eval accuracy = {cnn_accuracy}")
+    print("Report successfully saved.")

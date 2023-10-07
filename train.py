@@ -21,10 +21,11 @@ if __name__ == "__main__":
     optimizer_cnn = torch.optim.Adam(cnn.parameters(), **CNN_OPTIMIZER_CONFIG)
 
     start_time = time.time()
-    print("CNN training:")
-    train(cnn, optimizer_cnn, train_loader_cnn)
+    print("CNN training...")
+    train(cnn, optimizer_cnn, train_loader_cnn, device)
 
     if not os.path.exists("saved_models"):
         os.makedirs("saved_models")
 
     torch.save(cnn.state_dict(), "saved_models/cnn.pt")
+    print("Model successfully saved.")

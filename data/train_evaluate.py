@@ -1,39 +1,30 @@
+import torch
 import torch.nn.functional as F
-from torch.autograd import Variable
 
 
-def train(model, optimizer, loader):
+def train(model, optimizer, loader, device):
     model.train()
-    loss_sum = 0
-    acc_sum = 0
     for idx, (data, target) in enumerate(loader):
-        data, target = data.cuda(), target.cuda()
-        data, target = Variable(data), Variable(target)
+        data, target = data.to(device), target.to(device)
         optimizer.zero_grad()
         output = model(data)
         loss = F.cross_entropy(output, target)
-        loss_sum += loss.data[0]
         loss.backward()
         optimizer.step()
 
-        predict = output.data.max(1)[1]
-        acc = predict.eq(target.data).cpu().sum()
-        acc_sum += acc
-    return loss_sum / len(loader), acc_sum / len(loader)
 
-
-def evaluate(model, loader):
+def evaluate(model, loader, device):
     model.eval()
     loss_sum = 0
     acc_sum = 0
-    for idx, (data, target) in enumerate(loader):
-        data, target = data.cuda(), target.cuda()
-        data, target = Variable(data, volatile=True), Variable(target, volatile=True)
-        output = model(data)
-        loss = F.cross_entropy(output, target)
-        loss_sum += loss.data[0]
+    with torch.no_grad():
+        for data, target in loader:
+            data, target = data.to(device), target.to(device)
+            out = model(data)
+            loss_sum += F.cross_entropy(out, target).item()
+            _, out = torch.max(out.data, 1)
+            acc_sum += (out == target).sum().item()
 
-        predict = output.data.max(1)[1]
-        acc = predict.eq(target.data).cpu().sum()
-        acc_sum += acc
-    return loss_sum / len(loader), acc_sum / len(loader)
+        loss_sum /= len(loader)
+        acc_sum /= len(loader.dataset)
+    return loss_sum, acc_sum
