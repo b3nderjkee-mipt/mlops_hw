@@ -3,10 +3,9 @@ import time
 
 import torch
 from data.config import CNN_CONFIG, CNN_TRAIN_CONFIG
-
 from data.dataset import mnist_dataload
-from model import ModelCNN
 from data.train_evaluate import evaluate
+from model import ModelCNN
 
 
 if __name__ == "__main__":
@@ -20,7 +19,6 @@ if __name__ == "__main__":
     cnn = ModelCNN(**CNN_CONFIG).to(device)
 
     cnn.load_state_dict(torch.load("saved_models/cnn.pt"))
-
 
     start_time = time.time()
     cnn_loss, cnn_accuracy = evaluate(cnn, eval_loader)

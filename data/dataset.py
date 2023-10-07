@@ -3,9 +3,7 @@ import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 
 
-
 def mnist_dataload(batch_size: int, train: bool, shuffle: bool = True) -> DataLoader:
-
     transform = transforms.Compose(
         [
             transforms.ToTensor(),

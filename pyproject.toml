@@ -12,7 +12,6 @@ torchvision = "^0.16.0"
 
 
 [tool.poetry.dev-dependencies]
-pytest = "^7.4.2"
 pre-commit = "^3.4.0"
 
 [tool.black]
@@ -25,6 +24,17 @@ profile = "black"
 line_length = 90
 lines_after_imports = 2
 
+[tool.nbqa.config]
+black = "pyproject.toml"
+isort = "pyproject.toml"
+flake8 = "setup.cfg"
+
+[tool.nbqa.addopts]
+flake8 = ["--extend-ignore=E402"]
+
+[tool.nbqa.mutate]
+black = 1
+isort = 1
 
 [build-system]
 requires = ["poetry-core"]
