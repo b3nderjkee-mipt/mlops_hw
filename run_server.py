@@ -1,19 +1,12 @@
 import json
 import os
 import subprocess
-from dataclasses import dataclass
 
 import hydra
 import mlflow
 import numpy as np
 import onnx
-
-
-@dataclass
-class Server:
-    tracking_uri: str
-    model_path: str
-    batch_size: int
+from mlops_hw.config import Server
 
 
 @hydra.main(config_path="configs", config_name="server_config", version_base="1.3")

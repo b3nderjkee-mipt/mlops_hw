@@ -18,3 +18,10 @@ class Model:
 class Params:
     model: Model
     training_params: Training
+
+
+@dataclass
+class Server:
+    tracking_uri: str
+    model_path: str
+    batch_size: int
