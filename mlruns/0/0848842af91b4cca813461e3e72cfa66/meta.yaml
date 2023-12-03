@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/0848842af91b4cca813461e3e72cfa66/artifacts
+end_time: 1701630613548
+entry_point_name: ""
+experiment_id: "0"
+lifecycle_stage: active
+run_id: 0848842af91b4cca813461e3e72cfa66
+run_name: classy-dolphin-737
+run_uuid: 0848842af91b4cca813461e3e72cfa66
+source_name: ""
+source_type: 4
+source_version: ""
+start_time: 1701630613400
+status: 4
+tags: []
+user_id: MSI

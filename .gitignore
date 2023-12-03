@@ -93,3 +93,7 @@ target/
 
 # exclude saved reports from source control by default
 /reports/
+
+model-settings.json
+
+/mlartifacts/

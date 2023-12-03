@@ -2,15 +2,22 @@ import torch
 import torch.nn.functional as F
 
 
-def train_model(model, optimizer, loader, device):
+def train_model(model, epochs, optimizer, loader, device):
     model.train()
-    for idx, (data, target) in enumerate(loader):
-        data, target = data.to(device), target.to(device)
-        optimizer.zero_grad()
-        output = model(data)
-        loss = F.cross_entropy(output, target)
-        loss.backward()
-        optimizer.step()
+    loss = None
+    acc = None
+    for epoch in range(epochs):
+        for idx, (data, target) in enumerate(loader):
+            data, target = data.to(device), target.to(device)
+            optimizer.zero_grad()
+            out = model(data)
+            loss = F.cross_entropy(out, target)
+            _, out = torch.max(out.data, 1)
+            acc = (out == target).sum().item()
+            loss.backward()
+            optimizer.step()
+
+    return loss.item(), acc
 
 
 def evaluate_model(model, loader, device):
