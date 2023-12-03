@@ -1,3 +1,0 @@
-tracking_uri: http://localhost:5000
-model_path: saved_models/cnn.onnx
-batch_size: 50
