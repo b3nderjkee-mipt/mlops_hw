@@ -1,3 +1,20 @@
-CNN_CONFIG = {"output_dim": 10, "dropout": 0.5}
-CNN_TRAIN_CONFIG = {"batch_size": 256, "n_epochs": 2}
-CNN_OPTIMIZER_CONFIG = {"lr": 1e-3}
+from dataclasses import dataclass
+
+
+@dataclass
+class Training:
+    batch_size: int
+    n_epochs: int
+    learning_rate: float
+
+
+@dataclass
+class Model:
+    output_dim: int
+    dropout: float
+
+
+@dataclass
+class Params:
+    model: Model
+    training_params: Training

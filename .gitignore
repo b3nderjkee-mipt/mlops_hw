@@ -89,7 +89,7 @@ target/
 .pytest_cache/
 
 # exclude saved models from source control by default
-/models/
+/saved_models/
 
 # exclude saved reports from source control by default
 /reports/

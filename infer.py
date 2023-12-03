@@ -2,9 +2,9 @@ import os
 import time
 
 import torch
-from data.config import CNN_CONFIG, CNN_TRAIN_CONFIG
-from data.dataset import mnist_dataload
-from data.train_evaluate import evaluate
+from mlops_hw.config import CNN_CONFIG, CNN_TRAIN_CONFIG
+from mlops_hw.dataset import mnist_dataload
+from mlops_hw.train_evaluate import evaluate_model
 from model import ModelCNN
 
 
@@ -21,7 +21,7 @@ if __name__ == "__main__":
     cnn.load_state_dict(torch.load("saved_models/cnn.pt"))
 
     start_time = time.time()
-    cnn_loss, cnn_accuracy = evaluate(cnn, eval_loader, device)
+    cnn_loss, cnn_accuracy = evaluate_model(cnn, eval_loader, device)
     print(f"CNN eval accuracy = {cnn_accuracy:.4f}")
 
     if not os.path.exists("reports"):

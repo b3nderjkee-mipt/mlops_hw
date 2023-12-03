@@ -2,7 +2,7 @@ import torch
 import torch.nn.functional as F
 
 
-def train(model, optimizer, loader, device):
+def train_model(model, optimizer, loader, device):
     model.train()
     for idx, (data, target) in enumerate(loader):
         data, target = data.to(device), target.to(device)
@@ -13,7 +13,7 @@ def train(model, optimizer, loader, device):
         optimizer.step()
 
 
-def evaluate(model, loader, device):
+def evaluate_model(model, loader, device):
     model.eval()
     loss_sum = 0
     acc_sum = 0
