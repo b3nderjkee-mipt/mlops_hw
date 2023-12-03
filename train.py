@@ -35,11 +35,12 @@ def train(cfg: Params):
     # start_time = time.time()
     print("CNN training...")
     with mlflow.start_run() as _:
-        loss, acc = train_model(cnn, n_epochs, optimizer_cnn, train_loader, device)
+        loss, acc, f1 = train_model(cnn, n_epochs, optimizer_cnn, train_loader, device)
         mlflow.log_params(cfg.model)
         mlflow.log_params(cfg.training)
         mlflow.log_metric("train_loss", loss)
         mlflow.log_metric("train_acc", acc)
+        mlflow.log_metric("train_f1", f1)
 
     input_size = next(iter(train_loader))[0].shape[1:]
 
