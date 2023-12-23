@@ -1,0 +1,5 @@
+outs:
+- md5: 4f89ec7f9adf07abeb384789df67d263
+  size: 590089
+  hash: md5
+  path: cnn.onnx

@@ -16,6 +16,11 @@ def convert_onnx(model, save_path, input_size):
         model,
         dummy_input,
         save_path,
+        opset_version=15,
+        do_constant_folding=True,
+        input_names=["IMAGE"],
+        output_names=["CLASS"],
+        dynamic_axes={"IMAGE": {0: "BATCH_SIZE"}, "CLASS": {0: "BATCH_SIZE"}},
     )
     print(f"Model has been converted to ONNX and saved in {save_path}")
 
@@ -50,7 +55,9 @@ def train(cfg: Params):
     torch.save(cnn.state_dict(), "saved_models/cnn.pt")
     print("Model successfully saved.")
 
-    convert_onnx(cnn.eval().cpu(), "saved_models/cnn.onnx", input_size)
+    convert_onnx(
+        cnn.eval().cpu(), "triton/model_repository/onnx-cnn/1/model.onnx", input_size
+    )
 
 
 if __name__ == "__main__":

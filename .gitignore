@@ -88,8 +88,6 @@ target/
 # pytest cache
 .pytest_cache/
 
-# exclude saved models from source control by default
-/saved_models/
 
 # exclude saved reports from source control by default
 /reports/
@@ -101,3 +99,5 @@ model-settings.json
 /mlruns/
 
 /outputs/
+
+/triton/model_repository/onnx-cnn/1/model.onnx

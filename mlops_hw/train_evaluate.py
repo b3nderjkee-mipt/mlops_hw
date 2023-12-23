@@ -7,7 +7,7 @@ def train_model(model, epochs, optimizer, loader, device):
     model.train()
     loss = None
     acc = None
-    f1score = F1Score("multiclass", num_classes=10)
+    f1score = F1Score("multiclass", num_classes=10).to(device)
     for epoch in range(epochs):
         for idx, (data, target) in enumerate(loader):
             data, target = data.to(device), target.to(device)
